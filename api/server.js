@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import authRoutes from "./routes/auth.route.js"
+import authRoutes from "./routes/auth.route.js";
 
 dotenv.config();
 
@@ -11,7 +11,6 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,12 +27,12 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 
 app.use((err, req, res, next) => {
-   const statusCode = err.statusCode || 500;
-   const message= err.message || "Internal server error."
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal server error.";
 
-   return res.status(statusCode).send({
-      status: false,
-      message
-   })
-})
+  return res.status(statusCode).send({
+    status: false,
+    message,
+  });
+});
 app.listen(PORT, () => console.log(`server listening on ${PORT}!`));
