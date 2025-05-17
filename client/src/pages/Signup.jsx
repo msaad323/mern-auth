@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -27,6 +28,7 @@ const Signup = () => {
       if(data.status === false) {
         setError(data.message)
       } 
+      navigate('/');
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -70,7 +72,7 @@ const Signup = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
-        <Link to="/signin">
+        <Link to="/sign-in">
           <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
