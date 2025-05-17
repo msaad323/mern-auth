@@ -27,4 +27,13 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 
+app.use((err, req, res, next) => {
+   const statusCode = err.statusCode || 500;
+   const message= err.message || "Internal server error."
+
+   return res.status(statusCode).send({
+      status: false,
+      message
+   })
+})
 app.listen(PORT, () => console.log(`server listening on ${PORT}!`));
