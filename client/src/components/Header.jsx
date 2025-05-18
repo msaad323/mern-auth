@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
-
+import { useSelector } from 'react-redux';
 const Header = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const setActive = (isActive) => isActive ? "font-semibold" : undefined;
   return (
     <>
@@ -16,9 +17,13 @@ const Header = () => {
             <NavLink to="/about" className={(isActive) => setActive(isActive)}>
               <li>About</li>
             </NavLink>
-            <NavLink to="/profile" className={(isActive) => setActive(isActive)}>
-              <li>Profile</li>
-            </NavLink>
+            <NavLink to='/profile' className={(isActive) => setActive(isActive)}>
+            {currentUser ? (
+              <img src={currentUser.profilePicture} alt='profile' className='h-7 w-7 rounded-full object-cover' />
+            ) : (
+              <li>Sign In</li>
+            )}
+          </NavLink>
           </ul>
         </nav>
       </div>

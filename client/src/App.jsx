@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './components/Layout';
+import PrivateRoute from './components/privateRoute';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import SignIn from './pages/SignIn';
+import SignIn from './pages/Signin';
 import Signup from './pages/Signup';
 import About from './pages/About';
 
@@ -13,10 +13,15 @@ const router = createBrowserRouter([
     element: <Header />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'profile', element: <Profile /> },
-      { path: 'sign-in', element: <SignIn /> },
-      { path: 'sign-up', element: <Signup /> },
-      { path: 'about', element: <About /> },
+      { path: "sign-in", element: <SignIn /> },
+      { path: "sign-up", element: <Signup /> },
+      {
+        element: <PrivateRoute />,
+        children: [
+          { path: "profile", element: <Profile /> },
+          { path: "about", element: <About /> },
+        ],
+      },
     ],
   },
 ]);
