@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
- import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,12 +12,12 @@ const firebaseConfig = {
   projectId: "mern-auth-b7396",
   storageBucket: "mern-auth-b7396.firebasestorage.app",
   messagingSenderId: "962201236535",
-  appId: "1:962201236535:web:3daf5c96d485b9d95d3bb2"
+  appId: "1:962201236535:web:3daf5c96d485b9d95d3bb2",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
-export { auth, provider };
+const storage = getStorage(app);
+export { auth, provider, storage };
