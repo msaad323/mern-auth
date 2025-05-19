@@ -50,7 +50,7 @@ const Profile = () => {
 
   const handleUpload = () => {
     if (!file) {
-      setError("Please select a valid image.");
+      setError("Please choose a valid image.");
       return;
     }
 
